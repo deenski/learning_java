@@ -64,13 +64,13 @@ public class craps_v2
             System.out.printf("Your point is now %d. Good Luck!%n", point);
             
             // keep rolling till you hit your point or crap out.
-            while (sum != point || sum < point)
+            while (sum != point || sum < point || sum != 7)
             {
                dice1 = (int) Math.floor(Math.random() * 6) + 1;
                dice2 = (int) Math.floor(Math.random() * 6) + 1;
                sum = dice1 + dice2;
                //print the outcome of each roll
-               if (sum == point)
+               if (sum == point || sum == 7)
                {  
                   //you win
                   System.out.printf("You rolled a %d! You win!%n", sum);
