@@ -70,13 +70,13 @@ public class craps_v2
                dice2 = (int) Math.floor(Math.random() * 6) + 1;
                sum = dice1 + dice2;
                //print the outcome of each roll
-               if (sum == point || sum == 7)
+               if (sum == point)
                {  
                   //you win
                   System.out.printf("You rolled a %d! You win!%n", sum);
                   break;
                }
-               else if (sum > point)
+               else if (sum > point || sum == 7)
                {
                   //you crapped out
                   System.out.printf("You rolled a %d! Craped out!%n", sum);
