@@ -2,43 +2,53 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class RectangleAreaCalculator extends JFrame {
-
+public class RectangleFrame extends JFrame {
     private JLabel lengthL, widthL, areaL, perimeterL;
     private JTextField lengthTF, widthTF, areaTF, perimeterTF;
     private JButton calculateB, exitB;
     
-    private CalculateButtonHandler cbHandler;
-    private ExitButtonHandler ebHandler;
+    //private CalculateButtonHandler cbHandler;
+    //private ExitButtonHandlser ebHandler;
+    
+    private Icon lengthIcon = new ImageIcon("ruler.png");
+    private Icon areaIcon = new ImageIcon("area.png");
+    private Icon widthIcon = new ImageIcon("widthRuler.png");
+    private Icon perimeterIcon = new ImageIcon("perimeter.jpg");
     
     private static final int WIDTH = 400;
     private static final int HEIGHT = 300;
     
-    public RectangleAreaCalculator() {
-    
-        lengthL = new JLabel("Enter the length: ", SwingConstants.CENTER);
-        widthL = new JLabel("Enter the width: ", SwingConstants.CENTER);
-        areaL = new JLabel("Area: ", SwingConstants.CENTER);
-        perimeterL = new JLabel("Perimeter: ", SwingConstants.CENTER);
+    public RectangleFrame() {
+        setTitle("Area and Perimeter of a Rectangle");
+        setSize(WIDTH, HEIGHT);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         
+        //Get content pane to add elements to.
+        Container pane = getContentPane();
+        //set the grid layout
+        pane.setLayout(new GridLayout(5,2));
+
+        
+        //add JLabel info
+        lengthL = new JLabel("Enter the length: ", lengthIcon , SwingConstants.LEFT);
+        widthL = new JLabel("Enter the width: ", widthIcon, SwingConstants.LEFT);
+        areaL = new JLabel("Area: ", areaIcon, SwingConstants.LEFT);
+        perimeterL = new JLabel("Perimeter: ", perimeterIcon, SwingConstants.LEFT);
+        
+        //add JTextField info
         lengthTF = new JTextField(10);
         widthTF = new JTextField(10);
         areaTF = new JTextField(10);
+        areaTF.setEditable(false);
         perimeterTF = new JTextField(10);
+        perimeterTF.setEditable(false);
         
         calculateB = new JButton("Calculate");
-        cbHandler = new CalculateButtonHandler();
-        calculateB.addActionListener(cbHandler);
+        calculateB.addActionListener(new CalculateButtonHandler());
         
         exitB  = new JButton("Exit");
-        ebHandler = new ExitButtonHandler();
-        exitB.addActionListener(ebHandler);
+        exitB.addActionListener(new ExitButtonHandler());
         
-        setTitle("Rectangle Calculator");
-        
-        Container pane = getContentPane();
-        
-        pane.setLayout(new GridLayout(5,2));
         
         pane.add(lengthL);
         pane.add(lengthTF);
@@ -50,15 +60,12 @@ public class RectangleAreaCalculator extends JFrame {
         pane.add(perimeterTF);
         pane.add(calculateB);
         pane.add(exitB);
-        
-        setSize(WIDTH, HEIGHT);
+
         setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        
     }
     
     private class CalculateButtonHandler implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent e){
             double width, length, area, perimeter;
             
             length = Double.parseDouble(lengthTF.getText());
@@ -66,7 +73,8 @@ public class RectangleAreaCalculator extends JFrame {
             area = length * width;
             perimeter = 2 * (length + width);
             
-            areaTF.setText("" + area);
+            areaTF.setText(String.format("%.2f",area));
+            //areaTF.setText("" + area);
             perimeterTF.setText("" + perimeter);
         }
     }
@@ -78,6 +86,6 @@ public class RectangleAreaCalculator extends JFrame {
     }
     
     public static void main(String[] args) {
-        RectangleAreaCalculator rectProg = new RectangleAreaCalculator();
+        RectangleFrame myRect = new RectangleFrame();
     }
 }
