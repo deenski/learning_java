@@ -30,10 +30,10 @@ public class AreaCalculator {
         //if triangle
         else {
             int base = getWidth();
-            int height = getWidth();
+            int height = getLength();
             areaMain = calculateArea(shape, base, height);
             System.out.printf("The area of your triangle is %.0f.%n", areaMain);
-            printShape(shape, base, height);
+            printShape(base);
             
         }
 
@@ -73,18 +73,13 @@ public class AreaCalculator {
             System.out.println();
             for (int z = 0; z < y; z++) {
                 System.out.print("*");
-                
             }
         }
     }
     
     //print the triangle
-    public static void printShape(String someShape, double b, int h) {
-        System.out.println("Abracadabra " + someShape + "!");
+    public static void printShape(int b) {
         
-        // I know this does not take into account the height
-        // the user entered. I just can't figure out how to 
-        // implement that...
         for (int i = 1; i <= b; i++) {
             for (int j = 1; j <= i; j++) {
                 System.out.print("*");
