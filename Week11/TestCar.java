@@ -3,7 +3,7 @@
 
 import java.util.Scanner;
 
-public class Vendegna_Car_Tester {
+public class TestCar {
     public static void main(String[] args) {
        // create a new Scanner object
        Scanner kb = new Scanner(System.in);
